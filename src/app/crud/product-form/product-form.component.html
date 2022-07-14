@@ -1,0 +1,52 @@
+<h1>Cadastrar sua movimentaçao</h1>
+<hr width="40%" size="4">
+<form [formGroup]="productForm" (ngSubmit)="createProduct(productForm.value)">
+  <div class="form">
+
+    <!--DATA-->
+
+    <div class="input-group mb-4 col-5 campo">
+      <span class="input-group-text" id="inputGroup-sizing-default">Data</span>
+      <input type="text" class="form-control" formControlName="data" id="data">
+    </div>
+
+
+    <!--TIPO DE GASTO-->
+
+    <div class="input-group mb-4 col-5 campo">
+      <label class="input-group-text" for="tipo_gasto">Tipo de movimentação</label>
+      <select class="form-select" id="tipo_gasto" formControlName="tipo_gasto">
+        <option value="2">Entrada</option>
+        <option value="3">Saida</option>
+        <option value="3">Poupança</option>
+      </select>
+    </div>
+
+    <!--CATEGORIA-->
+
+    <div class="input-group mb-4 col-5 campo">
+      <label class="input-group-text" for="categoria">Tipo de movimentação</label>
+      <select class="form-select" id="categoria" formControlName="categoria">
+        <option value="2">Entrada</option>
+        <option value="3">Saida</option>
+        <option value="3">Poupança</option>
+      </select>
+    </div>
+
+    <!--VALOR-->
+
+    <div class="input-group mb-4 col-5 campo">
+      <span class="input-group-text">Valor - R$</span>
+      <input type="text" class="form-control" id="valor" formControlName="valor">
+      <span class="input-group-text">.00</span>
+    </div>
+
+    <!--DESCRIÇÂO-->
+    <div class="input-group col-10 campo">
+      <span class="input-group-text">Descrição</span>
+      <textarea class="form-control" formControlName="descricao" id="descricao"></textarea>
+    </div>
+
+  </div>
+  <button type="submit" class="btn btn-primary">Salvar</button>
+</form>
