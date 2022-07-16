@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {MatCardModule} from "@angular/material/card";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {MatCardModule} from "@angular/material/card";
     ProductListComponent,
     ProductDetailsComponent,
     ProductFormComponent,
+    HomeComponent,
   ],
   imports: [
     CommonModule,

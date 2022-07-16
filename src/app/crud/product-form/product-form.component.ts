@@ -3,6 +3,7 @@ import {CRUDService} from "../services/crud.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router, Routes} from "@angular/router";
 import Swal from 'sweetalert2';
+import {SpentType} from "../enum/spent-type";
 
 @Component({
   selector: 'app-product-form',
@@ -18,7 +19,7 @@ export class ProductFormComponent implements OnInit {
   constructor(private crudService: CRUDService,
               private formBuilder: FormBuilder,
               private router: Router,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.createProductForm();
