@@ -4,15 +4,12 @@
   <div class="form">
 
     <!--DATA-->
-
     <div class="input-group mb-4 col-5 campo">
       <span class="input-group-text" id="inputGroup-sizing-default">Data</span>
       <input type="text" class="form-control" formControlName="data" id="data">
     </div>
 
-
     <!--TIPO DE GASTO-->
-
     <div class="input-group mb-4 col-5 campo">
       <label class="input-group-text" for="tipo_gasto">Tipo de movimentação</label>
       <select class="form-select" id="tipo_gasto" formControlName="tipo_gasto">
@@ -22,19 +19,25 @@
       </select>
     </div>
 
-    <!--CATEGORIA-->
+    <p class="col-6" *ngIf="productForm.controls['data'].errors?.['required'] && productForm.controls['data'].touched">
 
+    </p>
+
+    <!--CATEGORIA-->
     <div class="input-group mb-4 col-5 campo">
       <label class="input-group-text" for="categoria">Tipo de movimentação</label>
       <select class="form-select" id="categoria" formControlName="categoria">
-        <option value="2">Entrada</option>
-        <option value="3">Saida</option>
-        <option value="3">Poupança</option>
+        <option>Role</option>
+        <option>Bebida</option>
+        <option>Transporte</option>
+        <option>Serivços</option>
+        <option>Roupa</option>
+        <option>Eletronicos</option>
+        <option>Comida</option>
       </select>
     </div>
 
     <!--VALOR-->
-
     <div class="input-group mb-4 col-5 campo">
       <span class="input-group-text">Valor - R$</span>
       <input type="text" class="form-control" id="valor" formControlName="valor">
@@ -50,3 +53,5 @@
   </div>
   <button type="submit" class="btn btn-primary">Salvar</button>
 </form>
+
+
