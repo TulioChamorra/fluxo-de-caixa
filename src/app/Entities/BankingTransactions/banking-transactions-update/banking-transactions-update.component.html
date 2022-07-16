@@ -7,7 +7,7 @@
 
     <!--DATA-->
     <div class="input-group mb-4 col-5 campo">
-      <span class="input-group-text" id="inputGroup-sizing-default">Data</span>
+      <span class="input-group-text" id="inputGroup-sizing-default">*Data</span>
       <input type="text" class="form-control" formControlName="data" id="data">
     </div>
 
@@ -21,13 +21,13 @@
       </select>
     </div>
 
-    <p class="col-6" *ngIf="bankingTransactionsForm.controls['data'].errors?.['required'] && bankingTransactionsForm.controls['data'].touched">
-
-    </p>
+<!--    <p class="col-5" *ngIf="bankingTransactionsForm.controls['data'].errors?.['required'] && bankingTransactionsForm.controls['data'].touched">-->
+<!--        teste-->
+<!--    </p>-->
 
     <!--CATEGORIA-->
     <div class="input-group mb-4 col-5 campo">
-      <label class="input-group-text" for="categoria">Tipo de movimentação</label>
+      <label class="input-group-text" for="categoria">Categoria</label>
       <select class="form-select" id="categoria" formControlName="categoria">
         <option>Role</option>
         <option>Bebida</option>
@@ -53,7 +53,8 @@
     </div>
 
   </div>
-  <button type="submit" class="btn btn-primary">Salvar</button>
+  <button type="submit" class="btn btn-primary"
+          [disabled]="bankingTransactionsForm.invalid">Salvar</button>
 </form>
 
 

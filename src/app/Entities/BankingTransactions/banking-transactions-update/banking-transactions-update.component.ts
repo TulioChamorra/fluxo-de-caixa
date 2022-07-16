@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {BankingTransactionsService} from "../services/banking-transactions.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router, Routes} from "@angular/router";
 import Swal from 'sweetalert2';
 import {SpentType} from "../../../enum/spent-type";
@@ -34,13 +34,15 @@ export class BankingTransactionsUpdateComponent implements OnInit {
   }
 createBankingTransactionsForm(){
   this.bankingTransactionsForm = this.formBuilder.group({
-    'data': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
-    'tipo_gasto': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(500)])],
-    'categoria': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(8)])],
-    'valor': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(8)])],
-    'descricao': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(8)])]
-  })
+    data: [null, Validators.required],
+    tipo_gasto: [null, Validators.required],
+    categoria: [null, Validators.required],
+    valor: [null, Validators.required],
+    descricao: [null, Validators.required],
+
+  });
 }
+
 
 createBankingTransactions(values: any){
   console.log(values);
