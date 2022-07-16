@@ -1,6 +1,6 @@
 <h1>Cadastrar sua movimentaçao</h1>
 <hr width="40%" size="4">
-<form [formGroup]="productForm" (ngSubmit)="createProduct(productForm.value)">
+<form [formGroup]="bankingTransactionsForm" (ngSubmit)="createBankingTransactions(bankingTransactionsForm.value)">
   <div class="form">
 
     <!--DATA-->
@@ -19,7 +19,7 @@
       </select>
     </div>
 
-    <p class="col-6" *ngIf="productForm.controls['data'].errors?.['required'] && productForm.controls['data'].touched">
+    <p class="col-6" *ngIf="bankingTransactionsForm.controls['data'].errors?.['required'] && bankingTransactionsForm.controls['data'].touched">
 
     </p>
 

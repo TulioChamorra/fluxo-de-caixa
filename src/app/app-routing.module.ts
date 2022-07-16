@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {path: '', redirectTo: 'crud', pathMatch: 'full'},
-  {path: 'crud', loadChildren: ()=> import('./crud/crud.module').then(m=>m.CRUDModule)}
+  {path: 'crud', loadChildren: ()=> import('./Entities/BankingTransactions/banking-transactions.module').then(m=>m.BankingTransactionsModule)}
 
 ];
 

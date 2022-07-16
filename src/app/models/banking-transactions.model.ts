@@ -1,4 +1,4 @@
-export interface Product {
+export interface BankingTransactionsModel {
 
   id: any;
   data: string;

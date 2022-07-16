@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {CRUDService} from "../services/crud.service";
+import {BankingTransactionsService} from "../services/banking-transactions.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss'],
+  selector: 'app-bankingTransactions-list',
+  templateUrl: './banking-transactions-list.component.html',
+  styleUrls: ['./banking-transactions-list.component.scss'],
 })
-export class ProductListComponent implements OnInit {
+export class BankingTransactionsListComponent implements OnInit {
   columnDefs = [
     { field: 'id', headerName: 'Id', sortable: true },
     { field: 'data', headerName: 'Data', sortable: true },
@@ -23,20 +23,20 @@ export class ProductListComponent implements OnInit {
     rowHeight: 50
   }
 
-  productList: any = [];
-  productListSubscribe: any;
+  bankingTransactionsList: any = [];
+  bankingTransactionsListSubscribe: any;
 
-  constructor(private crudService: CRUDService, private router: Router) { }
+  constructor(private crudService: BankingTransactionsService, private router: Router) { }
 
   ngOnInit(): void {
-    this.getProductList();
+    this.getBankingTransactionsList();
 
   }
 
 
-  getProductList(){
-    this.productListSubscribe = this.crudService.loadProducts().subscribe(res => {
-      this.productList = res;
+  getBankingTransactionsList(){
+    this.bankingTransactionsListSubscribe = this.crudService.loadBankingTransactions().subscribe(res => {
+      this.bankingTransactionsList = res;
       console.log('res', res);
       this.rowData = res;
     })
@@ -51,33 +51,33 @@ export class ProductListComponent implements OnInit {
     let viewButton = div.querySelector('.btn-primary');
     // @ts-ignore
     viewButton.addEventListener('click', () => {
-      this.viewProductDetails(params);
+      this.viewBankingTransactionsDetails(params);
     });
 
     let editButton = div.querySelector('.btn-secondary');
     // @ts-ignore
     editButton.addEventListener('click', () => {
-      this.editProductDetails(params);
+      this.editBankingTransactionsDetails(params);
     });
 
     let deleteButton = div.querySelector('.btn-light');
     // @ts-ignore
     deleteButton.addEventListener('click', () => {
-      this.deleteProduct(params);
+      this.deleteBankingTransactions(params);
     });
 
     return div;
   }
 
-  viewProductDetails(params: any){
-    this.router.navigate(['/crud/view-product-details/' + params.data.id]);
+  viewBankingTransactionsDetails(params: any){
+    this.router.navigate(['/crud/view-banking-transactions-details/' + params.data.id]);
   }
 
-  editProductDetails(params: any){
-    this.router.navigate(['/crud/update-product/' + params.data.id]);
+  editBankingTransactionsDetails(params: any){
+    this.router.navigate(['/crud/update-banking-transactions/' + params.data.id]);
   }
 
-  deleteProduct(params: any){
+  deleteBankingTransactions(params: any){
     const that = this;
 
     // @ts-ignore
@@ -91,9 +91,9 @@ export class ProductListComponent implements OnInit {
       confirmButtonText: 'Excluir'
     }).then((result: any) => {
       if (result.isConfirmed) {
-        that.crudService.deleteProduct(params.data.id).subscribe(res => {
+        that.crudService.deleteBankingTransactions(params.data.id).subscribe(res => {
           if(res.result === 'success'){
-            this.getProductList();
+            this.getBankingTransactionsList();
             // @ts-ignore
             Swal.fire(
               'Excluido!',

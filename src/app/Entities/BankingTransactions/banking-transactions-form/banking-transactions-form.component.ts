@@ -1,39 +1,39 @@
 import { Component, OnInit } from '@angular/core';
-import {CRUDService} from "../services/crud.service";
+import {BankingTransactionsService} from "../services/banking-transactions.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router, Routes} from "@angular/router";
 import Swal from 'sweetalert2';
-import {SpentType} from "../enum/spent-type";
+import {SpentType} from "../../../enum/spent-type";
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.scss']
+  selector: 'app-banking-transactions-form',
+  templateUrl: './banking-transactions-form.component.html',
+  styleUrls: ['./banking-transactions-form.component.scss']
 })
-export class ProductFormComponent implements OnInit {
+export class BankingTransactionsFormComponent implements OnInit {
   //@ts-ignore
-  productForm: FormGroup;
-  productId: any;
+  bankingTransactionsForm: FormGroup;
+  bankingTransactionsId: any;
 
 
-  constructor(private crudService: CRUDService,
+  constructor(private crudService: BankingTransactionsService,
               private formBuilder: FormBuilder,
               private router: Router,
               private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
-    this.createProductForm();
-    let productId = '';
-    if(this.activatedRoute.snapshot.params['productId']){
-      let productId = this.activatedRoute.snapshot.params['productId'];
-      if(productId !== ''){
-        this.loadProductDetails(productId);
+    this.createBankingTransactionsForm();
+    let bankingTransactionsId = '';
+    if(this.activatedRoute.snapshot.params['bankingTransactionsId']){
+      let bankingTransactionsId = this.activatedRoute.snapshot.params['bankingTransactionsId'];
+      if(bankingTransactionsId !== ''){
+        this.loadBankingTransactionsDetails(bankingTransactionsId);
       }
     }
 
   }
-createProductForm(){
-  this.productForm = this.formBuilder.group({
+createBankingTransactionsForm(){
+  this.bankingTransactionsForm = this.formBuilder.group({
     'data': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(50)])],
     'tipo_gasto': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(500)])],
     'categoria': ['', Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(8)])],
@@ -42,7 +42,7 @@ createProductForm(){
   })
 }
 
-createProduct(values: any){
+createBankingTransactions(values: any){
   console.log(values);
   let formData = new FormData();
   formData.append('data', values.data);
@@ -50,12 +50,12 @@ createProduct(values: any){
   formData.append('categoria', values.categoria);
   formData.append('valor', values.valor);
   formData.append('descricao', values.descricao);
-  if(this.productId){
-    this.updateProduct(values);
+  if(this.bankingTransactionsId){
+    this.updateBankingTransactions(values);
   }else{
-    this.crudService.createProduct(formData).subscribe(res =>{
+    this.crudService.createBankingTransactions(formData).subscribe(res =>{
       if(res.result === 'success'){
-        this.router.navigate(['/crud/product-list'])
+        this.router.navigate(['/crud/banking-transactions-list'])
       }
     });
   }
@@ -63,14 +63,14 @@ createProduct(values: any){
 
 }
 
-updateProduct(values: any){
+updateBankingTransactions(values: any){
   let formData = new FormData();
   formData.append('data', values.data);
   formData.append('tipo_gasto', values.tipo_gasto);
   formData.append('categoria', values.categoria);
   formData.append('valor', values.valor);
   formData.append('descricao', values.descricao);
-  formData.append('id', this.productId);
+  formData.append('id', this.bankingTransactionsId);
   const that = this;
 
   Swal.fire({
@@ -83,9 +83,9 @@ updateProduct(values: any){
     confirmButtonText: 'Editar'
   }).then((result: any) => {
     if (result.isConfirmed) {
-      this.crudService.updateProductDetails(formData).subscribe((res => {
+      this.crudService.updateBankingTransactionsDetails(formData).subscribe((res => {
         if(res.result === 'success'){
-          this.router.navigate(['crud/view-product-details/' + this.productId])
+          this.router.navigate(['crud/view-banking-transactions-details/' + this.bankingTransactionsId])
         }
       }));
       Swal.fire(
@@ -97,14 +97,14 @@ updateProduct(values: any){
   });
 }
 
-loadProductDetails(productId: any){
-    this.crudService.loadProductInfo(productId).subscribe(res => {
-      this.productForm.controls['data'].setValue(res.data);
-      this.productForm.controls['tipo_gasto'].setValue(res.tipo_gasto);
-      this.productForm.controls['categoria'].setValue(res.categoria);
-      this.productForm.controls['valor'].setValue(res.valor);
-      this.productForm.controls['descricao'].setValue(res.descricao);
-      this.productId = res.id;
+loadBankingTransactionsDetails(bankingTransactionsId: any){
+    this.crudService.loadBankingTransactionsInfo(bankingTransactionsId).subscribe(res => {
+      this.bankingTransactionsForm.controls['data'].setValue(res.data);
+      this.bankingTransactionsForm.controls['tipo_gasto'].setValue(res.tipo_gasto);
+      this.bankingTransactionsForm.controls['categoria'].setValue(res.categoria);
+      this.bankingTransactionsForm.controls['valor'].setValue(res.valor);
+      this.bankingTransactionsForm.controls['descricao'].setValue(res.descricao);
+      this.bankingTransactionsId = res.id;
     })
 }
 
