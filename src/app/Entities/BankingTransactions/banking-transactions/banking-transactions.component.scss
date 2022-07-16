@@ -3,5 +3,23 @@ h1{
   font-size: 30px;
   margin-top: 15px;
   font-weight: bold;
+
+}
+.titulo{
+  float: left;
 }
 
+.botao{
+  float: left;
+  margin-top: 25px;
+  margin-left: 100px;
+}
+.btn-custom {
+  padding: 1px 15px 3px 2px;
+  border-radius: 50px;
+}
+
+.btn-icon {
+  padding: 8px;
+  background: #ffffff;
+}

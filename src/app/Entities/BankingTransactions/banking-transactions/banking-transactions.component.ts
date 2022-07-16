@@ -44,23 +44,23 @@ export class BankingTransactionsComponent implements OnInit {
 
   actionRender(params: any){
     let div = document.createElement('div');
-    let htmlCode = '<button type="button" class="btn btn-primary">Ver</button>\n' +
-    '<button type="button" class="btn btn-secondary">Editar</button>\n' +
-    '<button type="button" class="btn btn-light">Deletar</button>\n'
+    let htmlCode = '<button type="button" class="btn btn-success">Ver</button>\n' +
+    '<button type="button" class="btn btn-primary">Editar</button>\n' +
+    '<button type="button" class="btn btn-danger">Deletar</button>\n'
     div.innerHTML = htmlCode;
-    let viewButton = div.querySelector('.btn-primary');
+    let viewButton = div.querySelector('.btn-success');
     // @ts-ignore
     viewButton.addEventListener('click', () => {
       this.viewBankingTransactionsDetails(params);
     });
 
-    let editButton = div.querySelector('.btn-secondary');
+    let editButton = div.querySelector('.btn-primary');
     // @ts-ignore
     editButton.addEventListener('click', () => {
       this.editBankingTransactionsDetails(params);
     });
 
-    let deleteButton = div.querySelector('.btn-light');
+    let deleteButton = div.querySelector('.btn-danger');
     // @ts-ignore
     deleteButton.addEventListener('click', () => {
       this.deleteBankingTransactions(params);

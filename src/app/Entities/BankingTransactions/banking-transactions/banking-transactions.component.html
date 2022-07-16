@@ -1,6 +1,13 @@
-<h1>Listagem de todas as suas movimentações</h1>
-<hr width="40%" size="4">
-<div class="row">
+<div class="titulo col-9">
+  <h1>Listagem de todas as suas movimentações</h1>
+  <hr width="40%" size="4">
+</div>
+
+  <button type="button" class="btn btn-primary col-2 botao" [routerLink]="'/crud/create-banking-transactions'">
+    Adicionar movimentações
+  </button>
+
+<div class="row col-12">
   <div class="col-12">
     <ag-grid-angular
     style="height: 50rem"
