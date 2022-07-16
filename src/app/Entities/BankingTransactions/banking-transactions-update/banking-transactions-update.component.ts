@@ -14,6 +14,7 @@ export class BankingTransactionsUpdateComponent implements OnInit {
   //@ts-ignore
   bankingTransactionsForm: FormGroup;
   bankingTransactionsId: any;
+  clicke: boolean = false;
 
 
   constructor(private crudService: BankingTransactionsService,
@@ -30,17 +31,20 @@ export class BankingTransactionsUpdateComponent implements OnInit {
         this.loadBankingTransactionsDetails(bankingTransactionsId);
       }
     }
-
   }
 createBankingTransactionsForm(){
   this.bankingTransactionsForm = this.formBuilder.group({
-    data: [null, Validators.required],
+    data: [null, this.validar],
     tipo_gasto: [null, Validators.required],
     categoria: [null, Validators.required],
     valor: [null, Validators.required],
     descricao: [null, Validators.required],
 
   });
+}
+
+validar(input: FormControl){
+    return (input.value ? null : { obrigatoriedade: true});
 }
 
 
@@ -111,4 +115,8 @@ loadBankingTransactionsDetails(bankingTransactionsId: any){
 navigateTo(route: any){
     this.router.navigate([route]);
 }
+
+click(){
+    this.clicke = true;
+  }
 }
