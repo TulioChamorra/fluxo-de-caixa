@@ -14,26 +14,26 @@ export class BankingTransactionsService {
   constructor(private httpClient: HttpClient) { }
 
   loadBankingTransactions(){
-    const url = environment.API_EndPoint + 'view.php';
+    const url = environment.API_EndPoint + 'bankTransaction/view.php';
     return this.httpClient.get(url).pipe(map(data => data));
   }
   createBankingTransactions(data: any): Observable<HttpResponse>{
-    const url = environment.API_EndPoint + 'create.php';
+    const url = environment.API_EndPoint + 'bankTransaction/create.php';
     return this.httpClient.post<HttpResponse>(url, data).pipe(map(data => data));
   }
 
   loadBankingTransactionsInfo(bankingTransactionsId: any): Observable<BankingTransactionsModel>{
-    const url = environment.API_EndPoint + 'view_one.php?id=' + bankingTransactionsId;
+    const url = environment.API_EndPoint + 'bankTransaction/view_one.php?id=' + bankingTransactionsId;
     return this.httpClient.get<BankingTransactionsModel>(url).pipe(map(data => data));
   }
 
   updateBankingTransactionsDetails(data: any): Observable<HttpResponse>{
-    const url = environment.API_EndPoint + 'update.php';
+    const url = environment.API_EndPoint + 'bankTransaction/update.php';
     return this.httpClient.post<HttpResponse>(url, data).pipe(map(data => data));
   }
 
   deleteBankingTransactions(bankingTransactionsId: any): Observable<HttpResponse>{
-    const url = environment.API_EndPoint + 'delete.php?id=' + bankingTransactionsId
+    const url = environment.API_EndPoint + 'bankTransaction/delete.php?id=' + bankingTransactionsId
     return this.httpClient.get<HttpResponse>(url).pipe(map(data => data));
   }
 
