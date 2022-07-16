@@ -7,10 +7,10 @@ import {SpentType} from "../../../enum/spent-type";
 
 @Component({
   selector: 'app-banking-transactions-form',
-  templateUrl: './banking-transactions-form.component.html',
-  styleUrls: ['./banking-transactions-form.component.scss']
+  templateUrl: './banking-transactions-update.component.html',
+  styleUrls: ['./banking-transactions-update.component.scss']
 })
-export class BankingTransactionsFormComponent implements OnInit {
+export class BankingTransactionsUpdateComponent implements OnInit {
   //@ts-ignore
   bankingTransactionsForm: FormGroup;
   bankingTransactionsId: any;
@@ -75,8 +75,6 @@ updateBankingTransactions(values: any){
 
   Swal.fire({
     title: 'Deseja salvar as alterações feitas?',
-    text: "Você nao vai conseguir reverter esta ação!",
-    icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
@@ -89,8 +87,8 @@ updateBankingTransactions(values: any){
         }
       }));
       Swal.fire(
-        'Editado!',
-        'Seu registro foi editado',
+        'Editado com sucesso!',
+        '',
         'success'
       );
     }

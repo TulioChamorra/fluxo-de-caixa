@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {BankingTransactionsListComponent} from "./banking-transactions-list/banking-transactions-list.component";
+import {BankingTransactionsComponent} from "./banking-transactions/banking-transactions.component";
 
 import {BankingTransactionsDetailsComponent} from "./banking-transactions-details/banking-transactions-details.component";
 import {HomeComponent} from "../../home/home.component";
-import {BankingTransactionsFormComponent} from "./banking-transactions-form/banking-transactions-form.component";
+import {BankingTransactionsUpdateComponent} from "./banking-transactions-update/banking-transactions-update.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'banking-transactions-list', component: BankingTransactionsListComponent},
-  {path: 'create-banking-transactions', component: BankingTransactionsFormComponent},
-  {path: 'update-banking-transactions/:bankingTransactionsId', component: BankingTransactionsFormComponent},
+  {path: 'banking-transactions-list', component: BankingTransactionsComponent},
+  {path: 'create-banking-transactions', component: BankingTransactionsUpdateComponent},
+  {path: 'update-banking-transactions/:bankingTransactionsId', component: BankingTransactionsUpdateComponent},
   {path: 'view-banking-transactions-details/:bankingTransactionsId', component: BankingTransactionsDetailsComponent},
   {path: '', component: HomeComponent},
 

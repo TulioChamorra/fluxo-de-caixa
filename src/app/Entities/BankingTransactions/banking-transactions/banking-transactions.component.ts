@@ -4,10 +4,10 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-bankingTransactions-list',
-  templateUrl: './banking-transactions-list.component.html',
-  styleUrls: ['./banking-transactions-list.component.scss'],
+  templateUrl: './banking-transactions.component.html',
+  styleUrls: ['./banking-transactions.component.scss'],
 })
-export class BankingTransactionsListComponent implements OnInit {
+export class BankingTransactionsComponent implements OnInit {
   columnDefs = [
     { field: 'id', headerName: 'Id', sortable: true },
     { field: 'data', headerName: 'Data', sortable: true },
