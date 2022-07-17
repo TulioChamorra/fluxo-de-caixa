@@ -1,18 +1,12 @@
 h1{
   margin-left: 7px;
-  font-size: 30px;
+  font-size: 2em;
   margin-top: 15px;
   font-weight: bold;
 
 }
 .titulo{
   float: left;
-}
-
-.botao{
-  float: left;
-  margin-top: 25px;
-  margin-left: 100px;
 }
 .btn-custom {
   padding: 1px 15px 3px 2px;
@@ -23,3 +17,16 @@ h1{
   padding: 8px;
   background: #ffffff;
 }
+
+.container{
+  border: 3px solid yellowgreen;
+  min-height: 500px;
+}
+
+.tabela{
+  margin-top: 2%;
+}
+
+//.div1{
+//  border: 2px solid red;
+//}

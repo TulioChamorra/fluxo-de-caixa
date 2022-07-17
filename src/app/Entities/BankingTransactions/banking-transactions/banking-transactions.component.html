@@ -1,24 +1,33 @@
-<div class="titulo col-9">
-  <h1>Listagem de todas as suas movimentações</h1>
-  <hr width="40%" size="4">
+<div class="container">
+  <div class="row div1">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 class="col-sm-12">Listagem de todas as suas movimentações</h1>
+          <hr width="40%" size="4">
+    </div>
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 div1">
+          <button type="button" class="btn btn-primary col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 botao" [routerLink]="'/crud/create-banking-transactions'">
+            Adicionar movimentações
+          </button>
+    </div>
+  </div>
+  <div class="row tabela div1">
+    <div class="row col-12">
+      <div class="col-12">
+        <ag-grid-angular
+        style="height: 30rem"
+        class="ag-theme-alpine"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions"
+        >
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
 </div>
 
-  <button type="button" class="btn btn-primary col-2 botao" [routerLink]="'/crud/create-banking-transactions'">
-    Adicionar movimentações
-  </button>
 
 <!--  <button (click)="filtro()">TEste Filtro</button>-->
 
-<div class="row col-12">
-  <div class="col-12">
-    <ag-grid-angular
-    style="height: 50rem"
-    class="ag-theme-alpine"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [gridOptions]="gridOptions"
-    >
-    </ag-grid-angular>
-  </div>
-</div>
+
 

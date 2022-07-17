@@ -9,12 +9,10 @@ import {Router} from "@angular/router";
 })
 export class BankingTransactionsComponent implements OnInit {
   columnDefs = [
-    { field: 'id', headerName: 'Id', sortable: true },
     { field: 'data', headerName: 'Data', sortable: true },
     { field: 'tipo_gasto', headerName: 'Tipo de gasto', sortable: true },
     { field: 'categoria', headerName: 'Categoria', sortable: true },
     { field: 'valor', headerName: 'Valor', sortable: true},
-    { field: 'descricao', headerName: 'Descrição', sortable: true },
     { field: '', headerName: '', width: 300, cellRenderer: this.actionRender.bind(this) },
   ];
 
