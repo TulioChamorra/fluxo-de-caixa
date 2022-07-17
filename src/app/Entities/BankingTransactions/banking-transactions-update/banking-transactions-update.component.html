@@ -6,13 +6,13 @@
   <div class="form">
 
     <!--DATA-->
-    <div class="input-group mb-4 col-5 campo">
+    <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
       <span class="input-group-text" id="inputGroup-sizing-default">*Data</span>
       <input type="text" class="form-control" formControlName="data" id="data">
     </div>
 
     <!--TIPO DE GASTO-->
-    <div class="input-group mb-4 col-5 campo">
+    <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
       <label class="input-group-text" for="tipo_gasto">Tipo de movimentação</label>
       <select class="form-select" id="tipo_gasto" formControlName="tipo_gasto">
         <option>Entrada</option>
@@ -22,7 +22,7 @@
     </div>
 
     <!--CATEGORIA-->
-    <div class="input-group mb-4 col-5 campo">
+    <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
       <label class="input-group-text" for="categoria">Categoria</label>
       <select class="form-select" id="categoria" formControlName="categoria">
         <option>Role</option>
@@ -36,21 +36,24 @@
     </div>
 
     <!--VALOR-->
-    <div class="input-group mb-4 col-5 campo">
+    <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
       <span class="input-group-text">Valor - R$</span>
       <input type="text" class="form-control" id="valor" formControlName="valor">
       <span class="input-group-text">.00</span>
     </div>
 
     <!--DESCRIÇÂO-->
-    <div class="input-group col-md-10 col-sm-5 campo">
+    <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-10 col-xs-10 campo">
       <span class="input-group-text">Descrição*</span>
       <textarea class="form-control" formControlName="descricao" id="descricao"></textarea>
     </div>
 
   </div>
-  <button type="submit" class="btn btn-primary"
-          [disabled]="bankingTransactionsForm.invalid">Salvar</button>
+  <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xs-10 col-md-10">
+    <button type="submit" class="btn btn-primary mb-4"
+            [disabled]="bankingTransactionsForm.invalid">Salvar</button>
+  </div>
+
 </form>
 
 
