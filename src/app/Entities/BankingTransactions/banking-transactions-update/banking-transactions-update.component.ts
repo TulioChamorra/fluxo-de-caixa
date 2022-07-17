@@ -23,6 +23,7 @@ export class BankingTransactionsUpdateComponent implements OnInit {
               private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
+
     this.createBankingTransactionsForm();
     let bankingTransactionsId = '';
     if(this.activatedRoute.snapshot.params['bankingTransactionsId']){
@@ -61,12 +62,15 @@ createBankingTransactions(values: any){
   }else{
     this.crudService.createBankingTransactions(formData).subscribe(res =>{
       if(res.result === 'success'){
+        Swal.fire(
+          'Salvo com sucesso!',
+          '',
+          'success'
+        );
         this.router.navigate(['/crud/banking-transactions-list'])
       }
     });
   }
-
-
 }
 
 updateBankingTransactions(values: any){

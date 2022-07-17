@@ -42,6 +42,14 @@ export class BankingTransactionsComponent implements OnInit {
     })
   }
 
+  // filtro(){
+  //   this.bankingTransactionsListSubscribe = this.crudService.filtro().subscribe(res => {
+  //     this.bankingTransactionsList = res;
+  //     console.log('res', res);
+  //     this.rowData = res;
+  //   })
+  // }
+
   actionRender(params: any){
     let div = document.createElement('div');
     let htmlCode = '<button type="button" class="btn btn-success">Ver</button>\n' +

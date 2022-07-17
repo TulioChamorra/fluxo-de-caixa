@@ -37,4 +37,9 @@ export class BankingTransactionsService {
     return this.httpClient.get<HttpResponse>(url).pipe(map(data => data));
   }
 
+  filtro(){
+    const url = environment.API_EndPoint + 'bankTransaction/filtro.php';
+    return this.httpClient.get(url).pipe(map(data => data));
+  }
+
 }
