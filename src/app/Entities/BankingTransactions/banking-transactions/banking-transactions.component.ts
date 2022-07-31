@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {BankingTransactionsService} from "../services/banking-transactions.service";
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SpentType} from "../../../enum/spent-type";
+import {Subscription} from "rxjs";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-bankingTransactions-list',
@@ -8,6 +12,11 @@ import {Router} from "@angular/router";
   styleUrls: ['./banking-transactions.component.scss'],
 })
 export class BankingTransactionsComponent implements OnInit {
+
+  // @ts-ignore
+  bankingTransactionsForm: FormGroup;
+  private subscriptions: Subscription[] = [];
+
   columnDefs = [
     { field: 'data', headerName: 'Data', sortable: true },
     { field: 'tipo_gasto', headerName: 'Tipo de gasto', sortable: true },
@@ -22,15 +31,14 @@ export class BankingTransactionsComponent implements OnInit {
   }
 
   bankingTransactionsList: any = [];
+
   bankingTransactionsListSubscribe: any;
 
-  constructor(private crudService: BankingTransactionsService, private router: Router) { }
+  constructor(private crudService: BankingTransactionsService, private router: Router,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.getBankingTransactionsList();
-
   }
-
 
   getBankingTransactionsList(){
     this.bankingTransactionsListSubscribe = this.crudService.loadBankingTransactions().subscribe(res => {
@@ -40,13 +48,6 @@ export class BankingTransactionsComponent implements OnInit {
     })
   }
 
-  // filtro(){
-  //   this.bankingTransactionsListSubscribe = this.crudService.filtro().subscribe(res => {
-  //     this.bankingTransactionsList = res;
-  //     console.log('res', res);
-  //     this.rowData = res;
-  //   })
-  // }
 
   actionRender(params: any){
     let div = document.createElement('div');
@@ -71,7 +72,6 @@ export class BankingTransactionsComponent implements OnInit {
     deleteButton.addEventListener('click', () => {
       this.deleteBankingTransactions(params);
     });
-
     return div;
   }
 
@@ -110,9 +110,14 @@ export class BankingTransactionsComponent implements OnInit {
         });
       }
     })
-
   }
   priceCellRender(params: any){
     return '$ ' + params.data.p_price;
   }
+
+  // FILTRO
+
+
+
+
 }

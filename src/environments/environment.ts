@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API_EndPoint: 'http://localhost/fluxo_caixa_api/'
+  API_EndPoint: 'http://localhost/FluxoDeCaixa/BeckEnd/fluxo_caixa_api/'
 };
 
 /*

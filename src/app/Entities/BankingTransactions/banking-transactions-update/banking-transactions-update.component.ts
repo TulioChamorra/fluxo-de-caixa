@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BankingTransactionsService} from "../services/banking-transactions.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute, Router, Routes} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
 import {SpentType} from "../../../enum/spent-type";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-banking-transactions-form',
@@ -16,6 +17,7 @@ export class BankingTransactionsUpdateComponent implements OnInit {
   bankingTransactionsId: any;
   clicke: boolean = false;
 
+  private subscriptions: Subscription[] = [];
 
   constructor(private crudService: BankingTransactionsService,
               private formBuilder: FormBuilder,
@@ -33,6 +35,7 @@ export class BankingTransactionsUpdateComponent implements OnInit {
       }
     }
   }
+
 createBankingTransactionsForm(){
   this.bankingTransactionsForm = this.formBuilder.group({
     data: [null, this.validar],

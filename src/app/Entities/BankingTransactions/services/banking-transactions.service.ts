@@ -17,6 +17,7 @@ export class BankingTransactionsService {
     const url = environment.API_EndPoint + 'bankTransaction/view.php';
     return this.httpClient.get(url).pipe(map(data => data));
   }
+
   createBankingTransactions(data: any): Observable<HttpResponse>{
     const url = environment.API_EndPoint + 'bankTransaction/create.php';
     return this.httpClient.post<HttpResponse>(url, data).pipe(map(data => data));
@@ -35,11 +36,6 @@ export class BankingTransactionsService {
   deleteBankingTransactions(bankingTransactionsId: any): Observable<HttpResponse>{
     const url = environment.API_EndPoint + 'bankTransaction/delete.php?id=' + bankingTransactionsId
     return this.httpClient.get<HttpResponse>(url).pipe(map(data => data));
-  }
-
-  filtro(){
-    const url = environment.API_EndPoint + 'bankTransaction/filtro.php';
-    return this.httpClient.get(url).pipe(map(data => data));
   }
 
 }
