@@ -38,4 +38,13 @@ export class BankingTransactionsService {
     return this.httpClient.get<HttpResponse>(url).pipe(map(data => data));
   }
 
+  //////Filtro
+
+
+
+  filtro(values: any){
+    const url = environment.API_EndPoint + 'bankTransaction/filter.php?categoria=' + values.categoria + '&tipo=' + values.tipo_gasto;
+    return this.httpClient.get(url).pipe(map(data => data));
+  }
+
 }

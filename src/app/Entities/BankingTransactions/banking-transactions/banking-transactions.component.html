@@ -4,11 +4,39 @@
           <h1 class="col-sm-12">Listagem de todas as suas movimentações</h1>
           <hr width="40%" size="4">
     </div>
-    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="mb-4 col-12 col-sm-12 col-md-12 col-lg-12">
           <button type="button" class="btn btn-primary col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 botao" [routerLink]="'/crud/create-banking-transactions'">
             Adicionar movimentações
           </button>
     </div>
+  </div>
+  <div class="row">
+    <form [formGroup]="filterForm" (ngSubmit)="createFilter(filterForm.value)">
+    <!--TIPO DE GASTO-->
+    <div class="input-group col-11 col-sm-10 col-md-10 col-lg-3 col-xs-3 campo">
+      <label class="input-group-text" for="tipo_gasto">Tipo de movimentação</label>
+      <select class="form-select" id="tipo_gasto" formControlName="tipo_gasto">
+        <option>Entrada</option>
+        <option>Saida</option>
+        <option>Poupança</option>
+      </select>
+    </div>
+
+    <!--CATEGORIA-->
+    <div class="input-group col-11 col-sm-10 col-md-10 col-lg-3 col-xs-3 campo">
+      <label class="input-group-text" for="categoria">Categoria</label>
+      <select class="form-select" id="categoria" formControlName="categoria">
+        <option>Role</option>
+        <option>Bebida</option>
+        <option>Transporte</option>
+        <option>Serivços</option>
+        <option>Roupa</option>
+        <option>Eletronicos</option>
+        <option>Comida</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary col-2">Filtrar</button>
+    </form>
   </div>
   <div class="row tabela">
     <div class="row col-12">
@@ -18,8 +46,7 @@
         class="ag-theme-alpine"
         [rowData]="rowData"
         [columnDefs]="columnDefs"
-        [gridOptions]="gridOptions"
-        >
+        [gridOptions]="gridOptions">
         </ag-grid-angular>
       </div>
     </div>

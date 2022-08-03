@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 export class BankingTransactionsComponent implements OnInit {
 
   // @ts-ignore
-  bankingTransactionsForm: FormGroup;
+  filterForm: FormGroup;
   private subscriptions: Subscription[] = [];
 
   columnDefs = [
@@ -30,19 +30,21 @@ export class BankingTransactionsComponent implements OnInit {
     rowHeight: 50
   }
 
-  bankingTransactionsList: any = [];
+  filterList: any = [];
 
-  bankingTransactionsListSubscribe: any;
+  filterListSubscribe: any;
 
   constructor(private crudService: BankingTransactionsService, private router: Router,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.getBankingTransactionsList();
+    // this.getBankingTransactionsList();
+
+    this.createFilterForm();
   }
 
   getBankingTransactionsList(){
-    this.bankingTransactionsListSubscribe = this.crudService.loadBankingTransactions().subscribe(res => {
-      this.bankingTransactionsList = res;
+    this.filterListSubscribe = this.crudService.loadBankingTransactions().subscribe(res => {
+      this.filterList = res;
       console.log('res', res);
       this.rowData = res;
     })
@@ -115,7 +117,31 @@ export class BankingTransactionsComponent implements OnInit {
     return '$ ' + params.data.p_price;
   }
 
-  // FILTRO
+///////////////////////-- FILTRO --//////////////////////////
+
+  createFilterForm(){
+    this.filterForm = this.formBuilder.group({
+      tipo_gasto: [null],
+      categoria: [null]
+    });
+  }
+
+  createFilter(values: any){
+    console.log(values);
+    let formData = new FormData();
+    formData.append('tipo_gasto', values.tipo_gasto);
+    formData.append('categoria', values.categoria);
+    this.filtrar(values);
+  }
+
+  filtrar(values: any){
+    this.filterListSubscribe = this.crudService.filtro(values).subscribe(res => {
+      this.filterList = res;
+      console.log('res', res);
+      this.rowData = res;
+    })
+  }
+
 
 
 
