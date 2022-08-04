@@ -13,6 +13,8 @@ import Swal from "sweetalert2";
 })
 export class BankingTransactionsComponent implements OnInit {
 
+  tipoGasto: boolean = true;
+
   // @ts-ignore
   filterForm: FormGroup;
   private subscriptions: Subscription[] = [];
@@ -37,8 +39,7 @@ export class BankingTransactionsComponent implements OnInit {
   constructor(private crudService: BankingTransactionsService, private router: Router,private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    // this.getBankingTransactionsList();
-
+    this.getBankingTransactionsList();
     this.createFilterForm();
   }
 
@@ -141,9 +142,4 @@ export class BankingTransactionsComponent implements OnInit {
       this.rowData = res;
     })
   }
-
-
-
-
-
 }
