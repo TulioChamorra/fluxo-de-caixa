@@ -18,7 +18,6 @@
       <select class="form-select" id="tipo_gasto" formControlName="tipo_gasto">
         <option>Entrada</option>
         <option>Saida</option>
-        <option>Poupança</option>
       </select>
     </div>
 
@@ -26,13 +25,19 @@
     <div class="input-group mb-4 col-11 col-sm-10 col-md-12 col-lg-4 col-xs-4 campo">
       <label class="input-group-text" for="categoria">Categoria</label>
       <select class="form-select" id="categoria" formControlName="categoria">
-        <option>Role</option>
-        <option>Bebida</option>
-        <option>Transporte</option>
-        <option>Serivços</option>
-        <option>Roupa</option>
-        <option>Eletronicos</option>
-        <option>Comida</option>
+        <ng-container *ngIf="saida">
+          <option></option>
+          <option>Role</option>
+          <option>Bebida</option>
+          <option>Transporte</option>
+          <option>Serivços</option>
+          <option>Roupa</option>
+          <option>Eletronicos</option>
+          <option>Comida</option>
+        </ng-container>
+        <ng-container *ngIf="entrada">
+          <option>Salario</option>
+        </ng-container>
       </select>
     </div>
     &nbsp;<button type="submit" class="btn btn-primary mb-4 col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">Filtrar</button>

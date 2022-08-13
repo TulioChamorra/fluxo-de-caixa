@@ -12,8 +12,8 @@ import Swal from "sweetalert2";
   styleUrls: ['./banking-transactions.component.scss'],
 })
 export class BankingTransactionsComponent implements OnInit {
-
-  tipoGasto: boolean = true;
+  saida: boolean = true;
+  entrada: boolean = true;
 
   // @ts-ignore
   filterForm: FormGroup;
@@ -41,6 +41,19 @@ export class BankingTransactionsComponent implements OnInit {
   ngOnInit(): void {
     this.getBankingTransactionsList();
     this.createFilterForm();
+    this.registerInputChanges();
+  }
+
+  registerInputChanges(): void{
+    this.filterForm.get(['tipo_gasto'])?.valueChanges.subscribe(res => {
+      if(this.saida == true){
+        this.entrada = true;
+        this.saida = false;
+      }else{
+        this.entrada = false;
+        this.saida = true;
+      }
+    })
   }
 
   getBankingTransactionsList(){
@@ -122,7 +135,7 @@ export class BankingTransactionsComponent implements OnInit {
 
   createFilterForm(){
     this.filterForm = this.formBuilder.group({
-      tipo_gasto: [null],
+      tipo_gasto: ['Saida'],
       categoria: [null]
     });
   }
