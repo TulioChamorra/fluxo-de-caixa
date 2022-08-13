@@ -2,7 +2,7 @@
 <h1>Cadastrar sua movimentaçao</h1>
 <hr width="40%" size="4">
 
-<form [formGroup]="bankingTransactionsForm" (ngSubmit)="createBankingTransactions(bankingTransactionsForm.value)">
+<form [formGroup]="editForm" (ngSubmit)="createBankingTransactions(editForm.value)">
   <div class="form">
 
     <!--DATA-->
@@ -15,9 +15,8 @@
     <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
       <label class="input-group-text" for="tipo_gasto">Tipo de movimentação</label>
       <select class="form-select" id="tipo_gasto" formControlName="tipo_gasto">
-        <option>Entrada</option>
         <option>Saida</option>
-        <option>Poupança</option>
+        <option>Entrada</option>
       </select>
     </div>
 
@@ -25,13 +24,19 @@
     <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
       <label class="input-group-text" for="categoria">Categoria</label>
       <select class="form-select" id="categoria" formControlName="categoria">
-        <option>Role</option>
-        <option>Bebida</option>
-        <option>Transporte</option>
-        <option>Serivços</option>
-        <option>Roupa</option>
-        <option>Eletronicos</option>
-        <option>Comida</option>
+        <ng-container *ngIf="saida">
+          <option>Role</option>
+          <option>Bebida</option>
+          <option>Transporte</option>
+          <option>Serivços</option>
+          <option>Roupa</option>
+          <option>Eletronicos</option>
+          <option>Comida</option>
+        </ng-container>
+        <ng-container *ngIf="entrada">
+          <option>Salario</option>
+        </ng-container>
+
       </select>
     </div>
 
@@ -51,7 +56,7 @@
   </div>
   <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xs-10 col-md-10">
     <button type="submit" class="btn btn-primary mb-4"
-            [disabled]="bankingTransactionsForm.invalid">Salvar</button>
+            [disabled]="editForm.invalid">Salvar</button>
   </div>
 
 </form>

@@ -3,7 +3,6 @@ import {BankingTransactionsService} from "../services/banking-transactions.servi
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
-import {SpentType} from "../../../enum/spent-type";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -13,9 +12,11 @@ import {Subscription} from "rxjs";
 })
 export class BankingTransactionsUpdateComponent implements OnInit {
   //@ts-ignore
-  bankingTransactionsForm: FormGroup;
+  editForm: FormGroup;
   bankingTransactionsId: any;
-  clicke: boolean = false;
+  saida: boolean = true;
+  entrada: boolean = false;
+
 
   private subscriptions: Subscription[] = [];
 
@@ -25,8 +26,7 @@ export class BankingTransactionsUpdateComponent implements OnInit {
               private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
-
-    this.createBankingTransactionsForm();
+    this.editForms();
     let bankingTransactionsId = '';
     if(this.activatedRoute.snapshot.params['bankingTransactionsId']){
       let bankingTransactionsId = this.activatedRoute.snapshot.params['bankingTransactionsId'];
@@ -34,18 +34,32 @@ export class BankingTransactionsUpdateComponent implements OnInit {
         this.loadBankingTransactionsDetails(bankingTransactionsId);
       }
     }
+    this.registerInputChanges();
   }
 
-createBankingTransactionsForm(){
-  this.bankingTransactionsForm = this.formBuilder.group({
+  registerInputChanges(): void{
+    this.editForm.get(['tipo_gasto'])?.valueChanges.subscribe(res => {
+      if(this.saida == true){
+        this.entrada = true;
+        this.saida = false;
+      }else{
+        this.entrada = false;
+        this.saida = true;
+      }
+
+    });
+  }
+
+editForms(){
+  this.editForm = this.formBuilder.group({
     data: [null, this.validar],
-    tipo_gasto: [null, Validators.required],
+    tipo_gasto: ['Saida', Validators.required],
     categoria: [null, Validators.required],
     valor: [null, Validators.required],
     descricao: [null, Validators.required],
-
   });
 }
+
 
 validar(input: FormControl){
     return (input.value ? null : { obrigatoriedade: true});
@@ -110,20 +124,12 @@ updateBankingTransactions(values: any){
 
 loadBankingTransactionsDetails(bankingTransactionsId: any){
     this.crudService.loadBankingTransactionsInfo(bankingTransactionsId).subscribe(res => {
-      this.bankingTransactionsForm.controls['data'].setValue(res.data);
-      this.bankingTransactionsForm.controls['tipo_gasto'].setValue(res.tipo_gasto);
-      this.bankingTransactionsForm.controls['categoria'].setValue(res.categoria);
-      this.bankingTransactionsForm.controls['valor'].setValue(res.valor);
-      this.bankingTransactionsForm.controls['descricao'].setValue(res.descricao);
+      this.editForm.controls['data'].setValue(res.data);
+      this.editForm.controls['tipo_gasto'].setValue(res.tipo_gasto);
+      this.editForm.controls['categoria'].setValue(res.categoria);
+      this.editForm.controls['valor'].setValue(res.valor);
+      this.editForm.controls['descricao'].setValue(res.descricao);
       this.bankingTransactionsId = res.id;
     })
 }
-
-navigateTo(route: any){
-    this.router.navigate([route]);
-}
-
-click(){
-    this.clicke = true;
-  }
 }
