@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {BankingTransactionsService} from "../services/banking-transactions.service";
+import {BankingTransactionsService} from "./services/banking-transactions.service";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SpentType} from "../../../enum/spent-type";
 import {Subscription} from "rxjs";
 import Swal from "sweetalert2";
 

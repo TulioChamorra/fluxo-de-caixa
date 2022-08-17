@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {BankingTransactionsComponent} from "./banking-transactions/banking-transactions.component";
+import {BankingTransactionsComponent} from "./banking-transactions.component";
 
-import {BankingTransactionsDetailsComponent} from "./banking-transactions-details/banking-transactions-details.component";
+import {BankingTransactionsDetailsComponent} from "./banking-transactions-details.component";
 import {HomeComponent} from "../../home/home.component";
-import {BankingTransactionsUpdateComponent} from "./banking-transactions-update/banking-transactions-update.component";
+import {BankingTransactionsUpdateComponent} from "./banking-transactions-update.component";
 
 const routes: Routes = [
   {path: '', component: HomeComponent},

@@ -5,6 +5,7 @@ import {map} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {HttpResponse} from "../../../models/http-response";
 import {BankingTransactionsModel} from "../../../models/banking-transactions.model";
+import {Spent} from "../../../models/spent";
 
 @Injectable({
   providedIn: 'root'
@@ -39,9 +40,6 @@ export class BankingTransactionsService {
   }
 
   //////Filtro
-
-
-
   filtro(values: any){
     const url = environment.API_EndPoint + 'bankTransaction/filter.php?categoria=' + values.categoria + '&tipo=' + values.tipo_gasto;
     return this.httpClient.get(url).pipe(map(data => data));

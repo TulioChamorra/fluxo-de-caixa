@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {Spent} from "../models/spent";
+import {ApisService} from "../apis_services/apis.service";
+import {Savings} from "../models/savings";
+import {Earnings} from "../models/earnings";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  // @ts-ignore
+  spents: Spent;
+
+  // @ts-ignore
+  savings: Savings;
+
+  // @ts-ignore
+  earns: Earnings;
+
+  constructor(private apiservice: ApisService) { }
 
   ngOnInit(): void {
+    this.loadSpents();
   }
 
+  loadSpents(){
+    this.apiservice.loadSpents().subscribe(res => {
+      this.spents = res;
+    })
+
+    this.apiservice.loadSavings().subscribe(res => {
+      this.savings = res;
+    })
+
+    this.apiservice.loadEarnings().subscribe(res => {
+      this.earns = res;
+    })
+  }
 }

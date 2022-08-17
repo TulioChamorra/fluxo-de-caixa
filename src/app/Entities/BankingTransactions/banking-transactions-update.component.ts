@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BankingTransactionsService} from "../services/banking-transactions.service";
+import {BankingTransactionsService} from "./services/banking-transactions.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';

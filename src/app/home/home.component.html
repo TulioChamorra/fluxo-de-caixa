@@ -1,2 +1,20 @@
-<h1>Seja bem-vindo ao fluxo de caixa</h1>
-<h3>Esperamos que goste do sistema!</h3>
+<div class="container">
+  <div class="row cards">
+    <mat-card class="btn-primary poupanca col-12 col-sm-12 col-md-3">
+      <h1>Poupança</h1>
+      <br>
+      <h1>R${{ savings?.savings }}</h1>
+    </mat-card>
+    <mat-card class="btn-success entrada col-12 col-sm-12 col-md-3">
+      <h1>Entrada</h1>
+      <br>
+      <h1>R${{ earns?.earns }}</h1>
+    </mat-card>
+    <mat-card class="btn-danger saida col-12 col-sm-12 col-md-3">
+      <h1>Saida</h1>
+      <br>
+      <h1>R${{ spents?.price }}</h1>
+    </mat-card>
+  </div>
+</div>
+

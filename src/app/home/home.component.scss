@@ -1,9 +1,17 @@
-h1{
-  font-size: 40px;
-  //font-weight: bold;
-  margin: 15px;
+.cards{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-h3{
-  font-size: 20px;
-  margin: 20px;
+
+mat-card{
+  height: 30%;
+  margin-left: 15px;
+  border: 3px;
+  text-align: center;
+}
+
+.poupanca{
+  background-color: #317cff;
 }
