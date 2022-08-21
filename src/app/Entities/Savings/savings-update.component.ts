@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {BankingTransactionsService} from "./services/banking-transactions.service";
+import {SavingsService} from "./services/savings.service";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import Swal from 'sweetalert2';
@@ -7,30 +7,31 @@ import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-banking-transactions-form',
-  templateUrl: './banking-transactions-update.component.html',
-  styleUrls: ['./banking-transactions-update.component.scss']
+  templateUrl: './savings-update.component.html',
+  styleUrls: ['./savings-update.component.scss']
 })
-export class BankingTransactionsUpdateComponent implements OnInit {
+export class SavingsUpdateComponent implements OnInit {
   //@ts-ignore
   editForm: FormGroup;
-  bankingTransactionsId: any;
+  savingsId: any;
   saida: boolean = true;
   entrada: boolean = false;
 
+
   private subscriptions: Subscription[] = [];
 
-  constructor(private crudService: BankingTransactionsService,
+  constructor(private crudService: SavingsService,
               private formBuilder: FormBuilder,
               private router: Router,
               private activatedRoute: ActivatedRoute,) { }
 
   ngOnInit(): void {
     this.editForms();
-    let bankingTransactionsId = '';
-    if(this.activatedRoute.snapshot.params['bankingTransactionsId']){
-      let bankingTransactionsId = this.activatedRoute.snapshot.params['bankingTransactionsId'];
-      if(bankingTransactionsId !== ''){
-        this.loadBankingTransactionsDetails(bankingTransactionsId);
+    let savingsId = '';
+    if(this.activatedRoute.snapshot.params['savingsId']){
+      let savingsId = this.activatedRoute.snapshot.params['savingsId'];
+      if(savingsId !== ''){
+        this.loadSavingsDetails(savingsId);
       }
     }
     this.registerInputChanges();
@@ -52,10 +53,7 @@ export class BankingTransactionsUpdateComponent implements OnInit {
 editForms(){
   this.editForm = this.formBuilder.group({
     data: [null, this.validar],
-    tipo_gasto: ['Saida', Validators.required],
-    categoria: [null, Validators.required],
     valor: [null, Validators.required],
-    descricao: [null],
   });
 }
 
@@ -65,38 +63,32 @@ validar(input: FormControl){
 }
 
 
-createBankingTransactions(values: any){
+createSavings(values: any){
   console.log(values);
   let formData = new FormData();
   formData.append('data', values.data);
-  formData.append('tipo_gasto', values.tipo_gasto);
-  formData.append('categoria', values.categoria);
   formData.append('valor', values.valor);
-  formData.append('descricao', values.descricao);
-  if(this.bankingTransactionsId){
-    this.updateBankingTransactions(values);
+  if(this.savingsId){
+    this.updateSavings(values);
   }else{
-    this.crudService.createBankingTransactions(formData).subscribe(res =>{
+    this.crudService.createSavings(formData).subscribe(res =>{
       if(res.result === 'success'){
         Swal.fire(
           'Salvo com sucesso!',
           '',
           'success'
         );
-        this.router.navigate(['/crud/banking-transactions-list'])
+        this.router.navigate(['/save/savings-list'])
       }
     });
   }
 }
 
-updateBankingTransactions(values: any){
+updateSavings(values: any){
   let formData = new FormData();
   formData.append('data', values.data);
-  formData.append('tipo_gasto', values.tipo_gasto);
-  formData.append('categoria', values.categoria);
   formData.append('valor', values.valor);
-  formData.append('descricao', values.descricao);
-  formData.append('id', this.bankingTransactionsId);
+  formData.append('id', this.savingsId);
   const that = this;
 
   Swal.fire({
@@ -107,9 +99,9 @@ updateBankingTransactions(values: any){
     confirmButtonText: 'Editar'
   }).then((result: any) => {
     if (result.isConfirmed) {
-      this.crudService.updateBankingTransactionsDetails(formData).subscribe((res => {
+      this.crudService.updateSavingsDetails(formData).subscribe((res => {
         if(res.result === 'success'){
-          this.router.navigate(['crud/view-banking-transactions-details/' + this.bankingTransactionsId])
+          this.router.navigate(['save/view-savings-details/' + this.savingsId])
         }
       }));
       Swal.fire(
@@ -121,14 +113,11 @@ updateBankingTransactions(values: any){
   });
 }
 
-loadBankingTransactionsDetails(bankingTransactionsId: any){
-    this.crudService.loadBankingTransactionsInfo(bankingTransactionsId).subscribe(res => {
+loadSavingsDetails(savingsId: any){
+    this.crudService.loadSavingsInfo(savingsId).subscribe(res => {
       this.editForm.controls['data'].setValue(res.data);
-      this.editForm.controls['tipo_gasto'].setValue(res.tipo_gasto);
-      this.editForm.controls['categoria'].setValue(res.categoria);
       this.editForm.controls['valor'].setValue(res.valor);
-      this.editForm.controls['descricao'].setValue(res.descricao);
-      this.bankingTransactionsId = res.id;
+      this.savingsId = res.id;
     })
 }
 }

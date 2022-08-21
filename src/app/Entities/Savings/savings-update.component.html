@@ -1,0 +1,27 @@
+
+<h1>Cadastrar sua movimentaçao</h1>
+<hr width="40%" size="4">
+
+<form [formGroup]="editForm" (ngSubmit)="createSavings(editForm.value)">
+  <div class="form">
+
+    <!--DATA-->
+    <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
+      <span class="input-group-text" id="inputGroup-sizing-default">*Data</span>
+      <input type="text" class="form-control" formControlName="data" id="data">
+    </div>
+
+    <!--VALOR-->
+    <div class="input-group mb-4 col-11 col-sm-10 col-md-10 col-lg-5 col-xs-5 campo">
+      <span class="input-group-text">Valor - R$</span>
+      <input type="text" class="form-control" id="valor" formControlName="valor">
+      <span class="input-group-text">.00</span>
+    </div>
+  </div>
+  <div class="col-10 col-sm-10 col-md-10 col-lg-10 col-xs-10 col-md-10">
+    <button type="submit" class="btn btn-primary mb-4"
+            [disabled]="editForm.invalid">Salvar</button>
+  </div>
+</form>
+
+

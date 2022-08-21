@@ -1,0 +1,29 @@
+<div class="container corpo">
+  <div class="row div1">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+          <h1 class="col-sm-12">Listagem de todas as suas movimentações</h1>
+          <hr width="40%" size="4">
+    </div>
+    <div class="mb-4 col-12 col-sm-12 col-md-12 col-lg-12">
+          <button type="button" class="btn btn-primary col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 botao" [routerLink]="'/save/create-savings'">
+            Adicionar Poupança
+          </button>
+    </div>
+  </div>
+
+  <div class="row tabela">
+    <div class="row col-12">
+      <div class="col-12">
+        <ag-grid-angular
+        class="ag-theme-alpine tabela"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [gridOptions]="gridOptions">
+        </ag-grid-angular>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
